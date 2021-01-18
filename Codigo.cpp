@@ -5,5 +5,6 @@
 int
 main(){
     printf("Hola mundo");
+    printf("Ver funcion de github");
     getch();
 }
