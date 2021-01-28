@@ -1,7 +1,10 @@
 import unittest
 from selenium import webdriver
 from selenium.webdriver.common.keys import  Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time 
+import click
 
 
 def busqueda():
@@ -10,6 +13,9 @@ def busqueda():
     search.send_keys(busquedas, Keys.ARROW_DOWN)
     time.sleep(1)
     search.send_keys(Keys.ENTER)
+    time.sleep(2)
+    resultados = driver.find_elements_by_tag_name("h3")
+    print(resultados)
 
 def cambio_ventna():
     driver.execute_script("window.open('');")
@@ -22,14 +28,13 @@ def resoomer():
     importar = driver.find_element_by_xpath("/html/body/section[1]/div/div[2]/div[1]/div/form/fieldset/div/textarea")
     importar.send_keys(informacion)
     time.sleep(2)
-    driver.find_element_by_xpath("/html/body/section[1]/div/div[2]/div[1]/div/form/fieldset/div/div[1]/div/ul/li[2]/input").click
-    
+    button = driver.find_element_by_xpath("/html/body/section[1]/div/div[2]/div[1]/div/form/fieldset/div/div[1]/div/ul/li[2]/input")
+    button.click()
 
 
-informacion="palabra reservada para el Url que se desea obtener"
+informacion="https://es.wikipedia.org/wiki/Historia_de_M%C3%A9xico"
 print("Que es lo que desa resumir el dia de hoy, galan")
 busquedas = input()
 driver = webdriver.Firefox(executable_path=r"C:\Users\cesar\Documents\geckodriver.exe")
 busqueda()
-cambio_ventna()
-resoomer()
+time.sleep(2)
