@@ -3,10 +3,11 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import  Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+#from docx import Document
 import time 
 import click
 
-
+info = 'nada'
 def busqueda():
     driver.get("https://www.google.com.mx/")
     time.sleep(2)
@@ -30,6 +31,7 @@ def cambio_ventna():
     driver.switch_to.window(driver.window_handles[1])
 
 def resoomer():
+    global info
     driver.execute_script("window.open('');")
     driver.switch_to.window(driver.window_handles[1])
     driver.get("https://resoomer.com/es/")
@@ -41,17 +43,25 @@ def resoomer():
     time.sleep(60)
     doc = driver.find_element_by_xpath("/html/body/section[1]/div/div[2]/div[2]/div/div/div[4]/div[2]/div[2]/p/a[4]")
     pdf= driver.find_element_by_xpath("/html/body/section[1]/div/div[2]/div[2]/div/div/div[4]/div[2]/div[2]/p/a[3]")
-    info = driver.find_element_by_xpath("/html/body/section[1]/div/div[2]/div[2]/div/div/div[4]/div[2]/div[2]/div")
+    info = driver.find_element_by_xpath("/html/body/section[1]/div/div[2]/div[2]/div/div/div[4]/div[2]/div[2]/div/p").text
     obtencion = int(input("Que desea pbtener?\t\n1) un Doc\t\n2) Un pdf\t\n3) Solo el texto\t\n-->"))
     if obtencion==1:
         doc.click()
     if obtencion==2:
         pdf.click()
+        time.sleep(2)
+        driver.find_element_by_xpath("//*[@id='download']").click()
     if obtencion==3:
         print(info)
+
+#def documento():
+
+#    document = Document()
+#    texto = document.add_paragraph(info)
 
 busquedas = str(input("Que es lo que desa resumir el dia de hoy, galan\n--> "))
 driver = webdriver.Firefox(executable_path=r"C:\Users\cesar\Documents\geckodriver.exe")
 busqueda()
 url = driver.current_url
 resoomer()
+print(info, 'variable fuera de la funcion')
