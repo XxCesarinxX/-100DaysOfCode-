@@ -27,9 +27,9 @@ document.add_paragraph(
     'first item in ordered list', style='List Number' #Listado de numeros
 )
 
-document.add_picture(r'C:\ Users \ cesar \ Pictures \ Phothoshop \ banner', width=Inches(0.25))
+#document.add_picture(r'C:\ Users \ cesar \ Pictures \ Phothoshop \ banner', width=Inches(0.25))
 
-'''records = (
+records = (
     (3, '101', 'Spam'),
     (7, '422', 'Eggs'),
     (4, '631', 'Spam, spam, eggs, and spam')
@@ -44,7 +44,7 @@ for qty, id, desc in records:
     row_cells = table.add_row().cells
     row_cells[0].text = str(qty)
     row_cells[1].text = id
-    row_cells[2].text = desc'''
+    row_cells[2].text = desc
 
 document.add_page_break()
 
